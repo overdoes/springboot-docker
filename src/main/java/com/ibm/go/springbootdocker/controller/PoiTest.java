@@ -1,26 +1,18 @@
 package com.ibm.go.springbootdocker.controller;
 
-import com.aliyun.oss.ClientException;
-import com.aliyun.oss.OSSClient;
-import com.aliyun.oss.OSSException;
-import com.aliyun.oss.model.BucketInfo;
-import org.apache.log4j.Logger;
-import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.hssf.usermodel.HSSFClientAnchor;
+import org.apache.poi.hssf.usermodel.HSSFPatriarch;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
-public class TestOss {
-    static Logger logger = Logger.getLogger(TestOss.class);
-
-    private static String endpoint = "http://oss-cn-beijing.aliyuncs.com";
-
-    private static String accessKeyId = "LTAI4FnAX1wb1Z3ibP4Z2E68";
-    private static String accessKeySecret = "ruMP42ecp9y6s1cvYE301QQDqIXjcI";
-
-    private static String bucketName = "test-bucketli";
-    private static String firstKey = "giao";
+public class PoiTest {
 
     public static void main(String[] args) {
 
