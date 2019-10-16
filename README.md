@@ -1,2 +1,2 @@
 # springboot-docker
-springboot-docker  init
+springboot-docker  test
