@@ -1,6 +1,7 @@
 package com.ibm.go.springbootdocker.config;
 
 
+import com.ibm.go.springbootdocker.shiro.CustomRealm;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -15,18 +16,16 @@ public class ShiroConfig {
 
 
     /**
-     * 过滤器默认权限表{anon=anon  authc=authc,authcBasic=authcBasic,logout=logout,
-     * noSessionCreation=noSessionCreation,perms=perms, port=port
-     * rest=rest,roles=roles,ssl=ssl,user=user}
-     * <p>
-     * anon,authc,authcBasic,user   认证过滤器
-     * perms,port,rest,roles,ssl  授权过滤器
-     * <p>
-     * <p>
-     * <p>
-     * user 和 authc 的不同，当应用开启了rememberMe时,用户下次访问时可以是一个user, 但绝不会是authc,
-     * 因为authc是需要重新认证的,user表示用户不一定已通过认证,只要曾被Shiro记住过登录状态的用户就可以正常发起请求，比如rememberMe
-     * 以前的一个用户登录时开启了rememberMe, 然后他关闭浏览器, 下次再访问时他就是一个user, 而不会authc
+     * filter chain 定义说明
+     *  1.一个url 可以配置多个filter，使用逗号隔开
+     *  2.多个过滤器必须全部通过才行
+     *  3.部分过滤器可以指定参数 如：roles perms
+     *
+     *
+     *  anon:任何人都可以访问  authc:必须登录才可以访问，不包括 remember me
+     *  user: 登录用户才能访问，  包含 remember me
+     *  perms:指定过滤规则，一般是扩展使用，不会使用原生的
+     *
      *
      * @param securityManager 初始化 ShiroFilterFactoryBean 的时候需要注入 SecurityManage
      */
